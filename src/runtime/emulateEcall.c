@@ -507,6 +507,13 @@ void emulate_ecall(t_risc_addr addr, t_risc_reg_val *registerValues) {
             }
         }
             break;
+        case 226: //mprotect
+        {
+            log_syscall("Emulate syscall mprotect(226)...\n");
+            registerValues[a0] = syscall4(__NR_mprotect, registerValues[a0], registerValues[a1], registerValues[a2],
+                                          registerValues[a3]);
+        }
+            break;
         case 260: //wait4
         {
             log_syscall("Emulate syscall wait4 (260)...\n");
